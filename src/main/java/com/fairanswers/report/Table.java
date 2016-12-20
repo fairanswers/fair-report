@@ -30,5 +30,17 @@ public class Table {
 	public void setHeader(Row headerRow) {
 		this.headerRow = headerRow;
 	}
+
+	public String toHtml() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<table>");
+		sb.append(headerRow.toHeaderHtml() );
+		for(Row row:getRows() ){
+			sb.append(row.toHtml() );
+		}
+		sb.append("</table>");
+		sb.append(Report.END);
+		return sb.toString();
+	}
 	
 }

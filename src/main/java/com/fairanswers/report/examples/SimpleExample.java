@@ -1,5 +1,6 @@
 package com.fairanswers.report.examples;
 
+import com.fairanswers.report.HtmlFormatter;
 import com.fairanswers.report.JSONFormatter;
 import com.fairanswers.report.Report;
 import com.fairanswers.report.Row;
@@ -20,6 +21,8 @@ public class SimpleExample {
 		System.out.println(new JSONFormatter().compact(r) );
 		System.out.println(new JSONFormatter().pretty(r) );
 		System.out.println(new TextFormatter().pretty(r) );
+		System.out.println(new HtmlFormatter().pretty(r) );
+		Report.save("test.html", new HtmlFormatter().pretty(r) );
 	}
 
 	private static void makeTable(Table t, String title) {

@@ -24,4 +24,27 @@ public class Row {
 		return sb.toString();
 	}
 
+	public String toHtml() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<tr>");
+		Formatter fm = new Formatter(sb);
+		for(String str:data){
+			fm.format("<td>%s</td>\t", str) ;
+		}
+		sb.append("</tr>");
+		sb.append(Report.END);
+		return sb.toString();
+	}
+
+	public String toHeaderHtml() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<tr>");
+		Formatter fm = new Formatter(sb);
+		for(String str:data){
+			fm.format("<th>%s</th>\t", str) ;
+		}
+		sb.append("</tr>");
+		sb.append(Report.END);
+		return sb.toString();
+	}
 }

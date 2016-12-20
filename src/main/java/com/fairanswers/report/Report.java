@@ -1,5 +1,10 @@
 package com.fairanswers.report;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 
 public class Report {
@@ -64,6 +69,44 @@ public class Report {
 
 	public void setEnd(String end) {
 		this.END = end;
+	}
+
+	public String toHtml() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<H1>");
+		sb.append(header);
+		sb.append("</H1>");
+		sb.append(END);
+		
+		sb.append(details);
+		sb.append(END);
+		
+		for(Section s:getSections() ){
+			sb.append(s.toHtml() );
+		}
+		for(Table t:getTables() ){
+			sb.append(t.toHtml() );
+		}
+		
+		return sb.toString();
+	}
+
+	//Using old method for old java versions.
+	public static boolean save(String name, String data) {
+		Writer writer = null;
+		try {
+		    writer = new BufferedWriter(new OutputStreamWriter(
+		          new FileOutputStream(name), "utf-8"));
+		    writer.write(data);
+		    return true;
+		} catch (IOException ex) {
+			System.out.println("Error saving file "+name);
+			System.out.println(ex.getMessage());
+			ex.printStackTrace();
+		  return false;
+		} finally {
+		   try {writer.close();} catch (Exception ex) {/*ignore*/}
+		}
 	}
 
 }
