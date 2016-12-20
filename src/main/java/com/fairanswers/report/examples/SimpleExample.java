@@ -1,25 +1,32 @@
 package com.fairanswers.report.examples;
 
 import com.fairanswers.report.JSONFormatter;
+import com.fairanswers.report.Report;
 import com.fairanswers.report.Row;
 import com.fairanswers.report.Section;
 import com.fairanswers.report.Table;
+import com.fairanswers.report.TextFormatter;
 
 public class SimpleExample {
 	public static void main(String [] args){
+		Report r = new Report();
+		r.setHeader("Example Report Header");
+		r.setDetails("Example Report Details");
 		Table t = new Table();
 		makeTable(t, "First Table");
 		Section s = new Section();
 		s.getTables().add(t);
-		System.out.println(JSONFormatter.compact(s));
-		System.out.println(JSONFormatter.pretty(s));
+		r.getSections().add(s);
+		System.out.println(new JSONFormatter().compact(r) );
+		System.out.println(new JSONFormatter().pretty(r) );
+		System.out.println(new TextFormatter().pretty(r) );
 		
 	}
 
 	private static void makeTable(Table t, String title) {
 		
 		for(int i=1; i<= 10; i++){
-			t.getHeader().getData().add("Header "+ 0);
+			t.getHeaderRow().getData().add("Header "+ i);
 		}
 		for(int i=0; i< 10; i++){
 			Row r = new Row();

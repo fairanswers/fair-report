@@ -23,3 +23,5 @@ Add pictures
 Separate GSON, Text, and HTML into different project add-ons
 
 Add ascii tables.
+
+Add date formatter.
