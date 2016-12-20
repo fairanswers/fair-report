@@ -20,7 +20,6 @@ public class SimpleExample {
 		System.out.println(new JSONFormatter().compact(r) );
 		System.out.println(new JSONFormatter().pretty(r) );
 		System.out.println(new TextFormatter().pretty(r) );
-		
 	}
 
 	private static void makeTable(Table t, String title) {
